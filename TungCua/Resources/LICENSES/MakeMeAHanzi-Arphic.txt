@@ -1,0 +1,11 @@
+MakeMeAHanzi / hanzi-writer data — Attribution (Arphic Public License)
+=========================================================================
+
+TungCua (from P1/P2 onward) bundles stroke-order animation data derived from
+MakeMeAHanzi (https://github.com/skishore/makemeahanzi, dictionary.txt and
+graphics data via hanzi-writer-data), originally under the Arphic Public
+License (https://www.arphic.com/license).
+
+In-app attribution: Home > Attribution (TungCua/Resources/AttributionView.swift).
+P0 note: stroke data ships in P1/P2. This file reserves the attribution so
+the obligation is never accidentally dropped.

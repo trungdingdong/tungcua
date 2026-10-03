@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+    <key>CFBundleDisplayName</key>
+    <string>TungCua</string>
+    <key>NSCameraUsageDescription</key>
+    <string>TungCua uses the camera to scan printed or handwritten Chinese pages for on-device text recognition. Photos never leave your device.</string>
+    <key>NSPhotoLibraryUsageDescription</key>
+    <string>TungCua imports photos of Chinese documents for on-device text recognition. Photos never leave your device.</string>
+    <key>UILaunchScreen</key>
+    <dict>
+        <key>UIColorName</key>
+        <string>BgBase</string>
+    </dict>
+    <key>UIRequiredDeviceCapabilities</key>
+    <array>
+        <string>arm64</string>
+    </array>
+    <key>UISupportsDocumentBrowser</key>
+    <false/>
+</dict>
+</plist>

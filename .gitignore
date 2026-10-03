@@ -1,0 +1,38 @@
+# ---> Xcode
+build/
+DerivedData/
+*.xcuserdata/
+*.xcuserstate
+project.xcworkspace/
+xcuserdata/
+
+# ---> Swift
+.build/
+*.swiftpm/
+Packages/
+*.o
+*.d
+
+# ---> macOS
+.DS_Store
+.AppleDouble
+.LSOverride
+._*
+
+# ---> Snapshots / test artifacts (local runs, regenerated on device)
+/Tests/SnapshotCorpus/RESULTS.local.md
+
+# ---> Editors
+.vscode/
+.idea/
+*.swp
+*.tmp
+
+# ---> Env / secrets (on-device app must never need these, but keep hygiene)
+.env*
+*.key
+*.crt
+*.secret.yaml
+
+# ---> Misc
+Thumbs.db
