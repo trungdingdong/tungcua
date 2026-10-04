@@ -1,0 +1,48 @@
+# ---> Expo / React Native
+.expo/
+dist/
+build/
+node_modules/
+*.log
+.env*
+.env.local
+.env.*.local
+
+# ---> NativeWind / Tailwind
+.tailwindcache/
+
+# ---> EAS
+eas.json.local
+
+# ---> Built artifacts
+*.apk
+*.ipa
+*.aab
+
+# ---> Dictionary (built locally, not committed)
+assets/dictionary.sqlite
+
+# ---> Test artifacts
+e2e/results/
+coverage/
+.nyc_output/
+
+# ---> macOS
+.DS_Store
+.AppleDouble
+.LSOverride
+._*
+
+# ---> Editors
+.vscode/
+.idea/
+*.swp
+*.tmp
+
+# ---> Secrets (on-device app must never need these, but keep hygiene)
+*.key
+*.crt
+*.secret.yaml
+
+# ---> Misc
+Thumbs.db

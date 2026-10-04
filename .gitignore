@@ -1,17 +1,31 @@
-# ---> Xcode
-build/
-DerivedData/
-*.xcuserdata/
-*.xcuserstate
-project.xcworkspace/
-xcuserdata/
+# ---> Expo / React Native
+tungcua/.expo/
+tungcua/dist/
+tungcua/build/
+tungcua/node_modules/
+tungcua/*.log
+tungcua/.env*
+tungcua/.env.local
+tungcua/.env.*.local
 
-# ---> Swift
-.build/
-*.swiftpm/
-Packages/
-*.o
-*.d
+# ---> NativeWind / Tailwind
+tungcua/.tailwindcache/
+
+# ---> EAS
+tungcua/eas.json.local
+
+# ---> Built artifacts
+tungcua/*.apk
+tungcua/*.ipa
+tungcua/*.aab
+
+# ---> Dictionary (built locally, not committed)
+tungcua/assets/dictionary.sqlite
+
+# ---> Test artifacts
+tungcua/e2e/results/
+tungcua/coverage/
+tungcua/.nyc_output/
 
 # ---> macOS
 .DS_Store
@@ -19,20 +33,19 @@ Packages/
 .LSOverride
 ._*
 
-# ---> Snapshots / test artifacts (local runs, regenerated on device)
-/Tests/SnapshotCorpus/RESULTS.local.md
-
 # ---> Editors
 .vscode/
 .idea/
 *.swp
 *.tmp
 
-# ---> Env / secrets (on-device app must never need these, but keep hygiene)
-.env*
+# ---> Secrets (on-device app must never need these, but keep hygiene)
 *.key
 *.crt
 *.secret.yaml
 
 # ---> Misc
 Thumbs.db
+
+# ---> Spec Kit local state
+.specify/feature.json

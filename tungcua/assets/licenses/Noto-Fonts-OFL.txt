@@ -1,0 +1,9 @@
+Noto Sans SC / Noto Sans Rounded — SIL Open Font License (OFL)
+================================================================
+
+TungCua bundles Noto Sans SC (Chinese) and Noto Sans Rounded (Latin/rounded)
+from the Noto fonts project (https://github.com/notofonts), licensed under the
+SIL Open Font License 1.1 (https://scripts.sil.org/OFL).
+
+These fonts are freely redistributable and can be bundled in apps.
+No Apple-only system fonts (SF Pro, SF Rounded) are used.

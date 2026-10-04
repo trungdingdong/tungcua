@@ -1,0 +1,14 @@
+{
+  "version": "1.0.0",
+  "thresholds": {
+    "printed": 0.95,
+    "vertical": 0.80,
+    "handwritten": 0.60
+  },
+  "samples": {
+    "printed": [],
+    "vertical": [],
+    "handwritten": []
+  },
+  "notes": "Add sample images to printed/, vertical/, handwritten/ directories and update this manifest with filename, expected text, and tier."
+}

@@ -1,10 +1,10 @@
 # TungCua — Project Scope (Session Plan)
 
 ## Concept
-iOS app. Scan documents via camera or upload images / PDFs. OCR reads Chinese
-text. No full-document translation. Each recognized character is tappable.
-Tapping a character shows that character only: translation, usage example,
-modern-Chinese rendering, stroke order.
+Cross-platform app (iOS + Android). Scan documents via camera or upload images /
+PDFs. OCR reads Chinese text. No full-document translation. Each recognized
+character is tappable. Tapping a character shows that character only:
+translation, usage example, modern-Chinese rendering, stroke order.
 
 ## Locked Decisions
 - Source types: all (printed modern, classical / Han-Nom, handwritten,
@@ -12,50 +12,73 @@ modern-Chinese rendering, stroke order.
 - Translation targets: English + Vietnamese (toggle).
 - "Modernized" means both: Traditional ↔ Simplified conversion AND
   Classical → modern Mandarin paraphrase.
-- OCR strategy: on-device only (Apple Vision, no cloud).
+- OCR strategy: on-device only (Google ML Kit, bundled Chinese models).
 
-## Tech Stack
-- Swift 6, SwiftUI, iOS 17+ baseline (iOS 26+ only if on-device Foundation
-  Models generation ships in P3).
-- Scan: `VNDocumentCameraViewController` + `DataScannerViewController`
-  (VisionKit).
-- OCR: `VNRecognizeTextRequest`, `recognitionLanguages = ["zh-Hant",
-  "zh-Hans", "en"]`, `recognitionLevel = .accurate`. Note: Vision has no
-  language correction / `customWords` for Chinese.
-- Upload: `PhotosPicker`, `UIDocumentPicker`, PDFKit `PDFDocument` rasterized
-  per page at 300 dpi (MVP cap: 20 pages).
-- Storage: SwiftData (`ScannedDoc`, `DocPage`, `Bookmark`, `LookupHistory`)
-  + bundled read-only SQLite dictionary (`CharEntry`).
-- Conversion: OpenCC (Trad ↔ Simp).
-- TTS: `AVSpeechSynthesizer` (`zh-CN`, `zh-TW`, `vi-VN`, `en-US`).
+## Tech Stack (Cross-Platform)
+| Layer | Choice |
+|---|---|
+| Framework | Expo SDK 51 (React Native 0.76) |
+| Language | TypeScript (strict) |
+| Build | EAS Build (cloud iOS/Android) — no Mac required |
+| Camera/Scan | `expo-camera` + `expo-document-picker` + `expo-image-picker` |
+| OCR | `react-native-mlkit-text-recognition` (Google ML Kit, on-device, `zh-Hans` + `zh-Hant`) |
+| PDF | `react-native-pdf` (render page → bitmap → ML Kit) |
+| Storage | `watermelondb` (SQLite, reactive) or `expo-sqlite` + `drizzle-orm` |
+| State | `zustand` or `jotai` |
+| Navigation | `expo-router` (file-based) |
+| UI/Theme | `nativewind` (Tailwind) + custom pastel tokens |
+| Animations | `react-native-reanimated` 3 + `react-native-gesture-handler` |
+| TTS | `expo-speech` (platform voices) |
+| Fonts | `expo-font` (SF Pro / Noto Sans SC) |
+
+### Project Structure
+```
+tungcua/
+├── app/                    # expo-router pages
+│   ├── (tabs)/             # home, scan, library, settings
+│   ├── reader/[id].tsx     # document reader (tappable chars)
+│   └── char/[char].tsx     # detail sheet (modal)
+├── src/
+│   ├── components/         # CharGrid, CharCard, StrokePlayer, Toolbar
+│   ├── hooks/              # useOCR, useDictionary, useTheme
+│   ├── services/           # mlkit.ts, pdf.ts, dictionary.ts, opencc.ts
+│   ├── db/                 # watermelon models, migrations
+│   ├── theme/              # tokens.ts, global.css
+│   └── utils/              # char-tokenize, coordinate-map
+├── assets/                 # fonts, dict.sqlite (bundled), stroke SVGs
+├── eas.json                # build profiles
+└── package.json
+```
 
 ## Pipeline
 ```
-camera / photo / PDF → preprocess (crop, deskew, contrast) → Vision OCR →
-VNRecognizedTextObservation + boxes + candidates → page model →
-normalized string → OpenCC variant → per-char tokens → tap → dictionary lookup
+CameraRoll / DocumentPicker / Camera
+      ↓
+Expo Image/PDF → Bitmap (PDF: render page via react-native-pdf)
+      ↓
+ML Kit TextRecognizer (CHINESE model, on-device)
+      ↓
+RecognizedText: blocks → lines → elements (each ≈ word/char cluster)
+      ↓
+Coordinate mapping: normalize to 0–1, sort reading-order (top→bottom,
+right→left for vertical)
+      ↓
+Tokenize to per-character array (split clusters by Unicode grapheme)
+      ↓
+Persist: Doc → Pages → Char[] (bounds, text, confidence)
+      ↓
+Reader renders CharGrid (FlatList of TouchableOpacity per char)
+      ↓
+Tap → lookup in bundled SQLite → CharDetailSheet
 ```
-- V1 interaction: tap recognized-text characters (Vision returns line /
-  paragraph boxes, not char boxes). V2 (optional): proportional overlay boxes
-  on image.
-- Vertical text: Vision ordering is weak → custom sort + manual reading-order
-  fix UI. Handwriting / seal script: poor accuracy → low-confidence flag +
-  manual text correction before tap.
 
-## Dictionary & Data Sources (all bundled, offline)
-| Source | Provides |
-|---|---|
-| CC-CEDICT (~125k entries, CC BY-SA 4.0) | EN gloss + pinyin |
-| Unihan `kVietnamese`, `kMandarin`, `kRSUnicode` | Han-Viet reading, radical, stroke count |
-| CVDict / NomFoundation-derived table (curate) | Vietnamese glosses |
-| chinese-lexicon build | HSK level, frequency |
-| MakeMeAHanzi `dictionary.txt` | decomposition, etymology fallback |
-| hanzi-writer-data (MakeMeAHanzi graphics) | stroke-order animation JSON |
-| CC-CEDICT examples + Tatoeba subset | example sentences |
-| Classical-modern parallel corpus + Apple Foundation Models (on-device, fallback chain) | modern paraphrase |
-
-Fallback chain for paraphrase: corpus lookup → Foundation Models generation →
-dictionary gloss. AI output is always labeled and shown beside source sentence.
+## Dictionary Bundle (offline)
+- Build-time script: download CC-CEDICT + Unihan `kVietnamese` + OpenCC map
+  + hanzi-writer stroke JSON → compile to `dictionary.sqlite` (~30–50 MB)
+  → bundle in `assets/`.
+- WatermelonDB schema: `char_entries` (char, trad, simp, pinyin, hanviet,
+  radical, strokes, hsk, freq, def_en[], def_vi[], decomp, stroke_svg).
+- Stroke SVGs: compressed JSON or ODR (on-demand resources) if bundle > 100 MB.
 
 ## Char Detail Sheet (per tap)
 Big char + pinyin + Han-Viet (+ zhuyin optional), Trad/Simp variants, EN
@@ -86,20 +109,23 @@ add to list, copy, TTS.
   SF Pro body. Theme tokens only in views, no hardcoded hex.
 
 ## MVP Phases
-- P0: scaffold, permissions, scan + upload + PDF rasterize + Vision OCR +
-  text display.
-- P1: tappable char grid + bundled SQLite + detail sheet EN/VI + Trad/Simp.
-- P2: stroke animation + TTS + bookmarks/history + correction UI + search.
-- P3: Foundation Models paraphrase + flashcards + export + iCloud.
-- Gates: OCR < 2 s/page (iPhone 13+), lookup < 200 ms, VoiceOver operable.
+| Phase | Scope |
+|---|---|
+| P0 | Expo init, EAS config, camera + picker + PDF render, ML Kit OCR, page list, recognized text dump |
+| P1 | CharGrid (tappable), bundled SQLite dict, CharDetailSheet (EN/VI/Trad/Simp/pinyin/hanviet), Trad/Simp toggle |
+| P2 | StrokePlayer (SVG animate), TTS, bookmarks/history, low-confidence edit, vertical order fix |
+| P3 | On-device paraphrase (optional: TFLite or skip), flashcards/export, iCloud/Drive sync |
 
-## Risks
-- Han-Nom / cursive / seal accuracy → correction UI, honest confidence flags.
-- VI gloss quality fragmented → curation + user-report flow.
-- Bundle size (dict + SVGs ~80–150 MB) → SQLite compression, on-demand
-  resources.
-- AI paraphrase hallucination → labeled output + source always visible.
-- License attribution (CC BY-SA, Arphic) screens required.
+Gates: OCR < 2 s/page (mid-range device), lookup < 200 ms, TalkBack/VoiceOver operable.
+
+## Risks & Mitigations
+| Risk | Mitigation |
+|---|---|
+| ML Kit char-level boxes are clusters | Proportional split + grapheme cluster; allow manual correction |
+| Bundle size (dict + strokes) | WatermelonDB compression; ODR for stroke SVGs; lazy-load |
+| Expo managed workflow limits native modules | ML Kit + PDF + SQLite all have Expo-compatible packages |
+| No Mac for local iOS test | EAS Build + TestFlight; test on Android device locally |
+| Vertical/handwritten accuracy | Honest confidence UI; manual text edit before tap |
 
 ## Spec-Kit Base (this session)
 - `specify-cli` installed via `uv tool`; `specify.exe` blocked by AppControl
@@ -110,6 +136,10 @@ add to list, copy, TTS.
   (remove Sync Impact HTML comment before commit).
 
 ## Next Steps
-1. `/speckit.specify` — P0 capture + OCR feature spec.
-2. Decide: minimum iOS version, Foundation Models gate for P3.
+1. `/speckit.specify` — P0 capture + OCR feature spec (Expo + ML Kit).
+2. Decide: minimum Expo SDK / React Native version, on-device paraphrase
+   strategy for P3 (TFLite model vs skip).
 3. Curate Vietnamese gloss source.
+4. Scaffold Expo project: `npx create-expo-app tungcua -t typescript`
+5. Add deps, configure NativeWind + pastel tokens, write dictionary build
+   script.

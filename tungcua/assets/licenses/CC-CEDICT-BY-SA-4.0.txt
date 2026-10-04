@@ -1,0 +1,14 @@
+CC-CEDICT — Attribution (CC BY-SA 4.0)
+=========================================
+
+TungCua bundles dictionary data derived from CC-CEDICT
+(https://cc-cedict.org), licensed under Creative Commons
+Attribution-ShareAlike 4.0 International (CC BY-SA 4.0,
+https://creativecommons.org/licenses/by-sa/4.0/).
+
+You are free to share and adapt the dictionary data as long as you give
+appropriate credit to CC-CEDICT and its editors, and distribute any adapted
+dictionary material under the same license.
+
+In-app attribution: Home > Attribution (TungCua/Resources/AttributionView.tsx).
+Full license text: https://creativecommons.org/licenses/by-sa/4.0/legalcode
