@@ -11,21 +11,21 @@
 
 **Purpose**: Create isolated spike apps, shared corpus fixtures, and CI-ready scripts
 
-- [ ] T001 Create `spikes/` folder structure at repo root with `spike-a/`, `spike-b/`, `DECISION_RECORDS/`, `INTERFACE_SKETCHES/`
-- [ ] T002 Initialize Spike A Expo app: `npx create-expo-app@latest spike-a --template blank-typescript` in `spikes/spike-a/`
-- [ ] T003 Initialize Spike B Expo app: `npx create-expo-app@latest spike-b --template blank-typescript` in `spikes/spike-b/`
-- [ ] T004 [P] Install Spike A core deps: `expo`, `expo-dev-client`, `expo-router`, `expo-file-system`, candidate ML Kit wrappers (`react-native-mlkit-text-recognition`, `react-native-mlkit-vision`) in `spikes/spike-a/`
-- [ ] T005 [P] Install Spike B core deps: `expo`, `expo-dev-client`, `expo-router`, `expo-file-system`, candidate PDF libs (`react-native-pdf`, `pdfjs-dist`, `react-native-pdf-lib`) in `spikes/spike-b/`
-- [ ] T006 Install shared dev deps (both spikes): `jest`, `jest-expo`, `@testing-library/react-native`, `maestro`, `typescript`, `eslint`, `prettier` in each spike app
-- [ ] T007 [P] Configure `app.config.ts` for Spike A: bundle ID `com.tungcua.spikea`, ML Kit plugin, camera/file permissions, EAS build profiles, **release profile with no network permission** in `spikes/spike-a/app.config.ts`
-- [ ] T008 [P] Configure `app.config.ts` for Spike B: bundle ID `com.tungcua.spikeb`, PDF plugin(s), file permissions, EAS build profiles, **release profile with no network permission** in `spikes/spike-b/app.config.ts`
-- [ ] T009 [P] Configure `eas.json` for both spikes: development/preview/production profiles, Android APK, iOS dev client in `spikes/spike-a/eas.json` and `spikes/spike-b/eas.json`
-- [ ] T010 [P] Create shared corpus directories: `assets/spike-corpus/spike-a/{printed,vertical,handwritten}/`, `assets/spike-corpus/spike-b/` with `manifest.json` each
-- [ ] T011 [P] Add corpus fixture placeholder READMEs and `manifest.json` templates per `data-model.md` in `assets/spike-corpus/spike-a/manifest.json` and `assets/spike-corpus/spike-b/manifest.json`
-- [ ] T012 [P] Update root `.gitignore`: add `spikes/spike-a/`, `spikes/spike-b/`, `spikes/DECISION_RECORDS/`, `spikes/INTERFACE_SKETCHES/`, `spikes/**/node_modules/`, `spikes/**/.expo/`, `spikes/**/dist/`
-- [ ] T013 Add spike-specific scripts to root `package.json`: `spike:a:build:android`, `spike:a:build:ios`, `spike:b:build:android`, `spike:b:build:ios`, `spike:a:run`, `spike:b:run`, `spike:clean`
-- [ ] T014 [P] **Verify no network permission in release config**: check `android.permission.INTERNET` absent from Android release manifest and iOS network entitlements absent in both spike apps' `app.config.ts` release profiles in `spikes/spike-a/app.config.ts` and `spikes/spike-b/app.config.ts`
-- [ ] T015 [P] **Add spike app package.json audit task**: verify each spike app's `package.json` contains only the chosen candidate dependency (no losing candidates) in `spikes/spike-a/package.json` and `spikes/spike-b/package.json`
+- [x] T001 Create `spikes/` folder structure at repo root with `spike-a/`, `spike-b/`, `DECISION_RECORDS/`, `INTERFACE_SKETCHES/`
+- [x] T002 Initialize Spike A Expo app: `npx create-expo-app@latest spike-a --template blank-typescript` in `spikes/spike-a/`
+- [x] T003 Initialize Spike B Expo app: `npx create-expo-app@latest spike-b --template blank-typescript` in `spikes/spike-b/`
+- [x] T004 [P] Install Spike A core deps: `expo`, `expo-dev-client`, `expo-router`, `expo-file-system`, candidate ML Kit wrappers (`@react-native-ml-kit/text-recognition`) in `spikes/spike-a/`
+- [x] T005 [P] Install Spike B core deps: `expo`, `expo-dev-client`, `expo-router`, `expo-file-system`, candidate PDF libs (`react-native-pdf`, `pdfjs-dist`, `react-native-pdf-lib`) in `spikes/spike-b/`
+- [x] T006 Install shared dev deps (both spikes): `jest`, `jest-expo`, `@testing-library/react-native`, `maestro`, `typescript`, `eslint`, `prettier` in each spike app
+- [x] T007 [P] Configure `app.config.ts` for Spike A: bundle ID `com.tungcua.spikea`, ML Kit plugin, camera/file permissions, EAS build profiles, **release profile with no network permission** in `spikes/spike-a/app.config.ts`
+- [x] T008 [P] Configure `app.config.ts` for Spike B: bundle ID `com.tungcua.spikeb`, PDF plugin(s), file permissions, EAS build profiles, **release profile with no network permission** in `spikes/spike-b/app.config.ts`
+- [x] T009 [P] Configure `eas.json` for both spikes: development/preview/production profiles, Android APK, iOS dev client in `spikes/spike-a/eas.json` and `spikes/spike-b/eas.json`
+- [x] T010 [P] Create shared corpus directories: `assets/spike-corpus/spike-a/{printed,vertical,handwritten}/`, `assets/spike-corpus/spike-b/` with `manifest.json` each
+- [x] T011 [P] Add corpus fixture placeholder READMEs and `manifest.json` templates per `data-model.md` in `assets/spike-corpus/spike-a/manifest.json` and `assets/spike-corpus/spike-b/manifest.json`
+- [x] T012 [P] Update root `.gitignore`: add `spikes/spike-a/`, `spikes/spike-b/`, `spikes/DECISION_RECORDS/`, `spikes/INTERFACE_SKETCHES/`, `spikes/**/node_modules/`, `spikes/**/.expo/`, `spikes/**/dist/`
+- [x] T013 Add spike-specific scripts to root `package.json`: `spike:a:build:android`, `spike:a:build:ios`, `spike:b:build:android`, `spike:b:build:ios`, `spike:a:run`, `spike:b:run`, `spike:clean`
+- [x] T014 [P] **Verify no network permission in release config**: check `android.permission.INTERNET` absent from Android release manifest and iOS network entitlements absent in both spike apps' `app.config.ts` release profiles in `spikes/spike-a/app.config.ts` and `spikes/spike-b/app.config.ts`
+- [x] T015 [P] **Add spike app package.json audit task**: verify each spike app's `package.json` contains only the chosen candidate dependency (no losing candidates) in `spikes/spike-a/package.json` and `spikes/spike-b/package.json`
 
 ---
 

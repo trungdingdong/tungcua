@@ -16,7 +16,16 @@
     "build:dictionary": "tsx scripts/build-dictionary.ts",
     "db:generate": "drizzle-kit generate",
     "db:migrate": "drizzle-kit migrate",
-    "db:studio": "drizzle-kit studio"
+    "db:studio": "drizzle-kit studio",
+    "spike:a:build:android": "cd spikes/spike-a && pnpm eas build --platform android --profile development",
+    "spike:a:build:ios": "cd spikes/spike-a && pnpm eas build --platform ios --profile development",
+    "spike:b:build:android": "cd spikes/spike-b && pnpm eas build --platform android --profile development",
+    "spike:b:build:ios": "cd spikes/spike-b && pnpm eas build --platform ios --profile development",
+    "spike:a:run": "cd spikes/spike-a && pnpm expo start --dev-client",
+    "spike:b:run": "cd spikes/spike-b && pnpm expo start --dev-client",
+    "spike:clean": "rm -rf spikes/spike-a/node_modules spikes/spike-b/node_modules spikes/spike-a/.expo spikes/spike-b/.expo spikes/spike-a/dist spikes/spike-b/dist",
+    "spike:verify-network": "tsx scripts/verify-no-network.ts",
+    "spike:audit": "tsx scripts/audit-package-json.ts"
   },
   "jest": {
     "preset": "jest-expo"

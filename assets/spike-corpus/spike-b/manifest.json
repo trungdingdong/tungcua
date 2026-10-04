@@ -1,0 +1,15 @@
+{
+  "version": "1.0.0",
+  "entries": [
+    { "filename": "text-simplified-3page.pdf", "type": "text-simplified", "pdfPath": "text-simplified-3page.pdf", "pageCount": 3, "hasTextLayer": true, "groundTruthTextPerPage": ["第一页内容", "第二页内容", "第三页内容"], "expectedBehavior": "text-layer" },
+    { "filename": "text-traditional-3page.pdf", "type": "text-traditional", "pdfPath": "text-traditional-3page.pdf", "pageCount": 3, "hasTextLayer": true, "groundTruthTextPerPage": ["第一頁內容", "第二頁內容", "第三頁內容"], "expectedBehavior": "text-layer" },
+    { "filename": "scanned-3page.pdf", "type": "scanned", "pdfPath": "scanned-3page.pdf", "pageCount": 3, "hasTextLayer": false, "groundTruthTextPerPage": ["掃描頁一", "掃描頁二", "掃描頁三"], "expectedBehavior": "render-ocr" },
+    { "filename": "mixed-4page.pdf", "type": "mixed", "pdfPath": "mixed-4page.pdf", "pageCount": 4, "hasTextLayer": true, "groundTruthTextPerPage": ["文字層頁一", "掃描頁二", "文字層頁三", "掃描頁四"], "expectedBehavior": "text-layer" },
+    { "filename": "20-page.pdf", "type": "20-page", "pdfPath": "20-page.pdf", "pageCount": 20, "hasTextLayer": false, "expectedBehavior": "render-ocr" },
+    { "filename": "25-page.pdf", "type": "25-page", "pdfPath": "25-page.pdf", "pageCount": 25, "expectedBehavior": "refuse" },
+    { "filename": "large-pages.pdf", "type": "large-pages", "pdfPath": "large-pages.pdf", "pageCount": 5, "expectedBehavior": "render-ocr" },
+    { "filename": "password-protected.pdf", "type": "password-protected", "pdfPath": "password-protected.pdf", "pageCount": 3, "expectedBehavior": "error", "password": "test123" },
+    { "filename": "corrupted.pdf", "type": "corrupted", "pdfPath": "corrupted.pdf", "expectedBehavior": "error" },
+    { "filename": "garbage-text-layer.pdf", "type": "garbage-text-layer", "pdfPath": "garbage-text-layer.pdf", "pageCount": 2, "hasTextLayer": true, "expectedBehavior": "render-ocr" }
+  ]
+}

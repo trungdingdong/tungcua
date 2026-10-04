@@ -22,6 +22,15 @@ tungcua/*.aab
 # ---> Dictionary (built locally, not committed)
 tungcua/assets/dictionary.sqlite
 
+# ---> Spike apps (throwaway)
+spikes/spike-a/
+spikes/spike-b/
+spikes/DECISION_RECORDS/
+spikes/INTERFACE_SKETCHES/
+spikes/**/node_modules/
+spikes/**/.expo/
+spikes/**/dist/
+
 # ---> Test artifacts
 tungcua/e2e/results/
 tungcua/coverage/

@@ -1,0 +1,18 @@
+{
+  "version": "1.0.0",
+  "thresholds": {
+    "printedAccuracy": 0.95,
+    "warmTimeMs": 2000
+  },
+  "entries": [
+    { "filename": "printed-simplified-01.jpg", "tier": "printed-simplified", "imagePath": "printed-simplified-01.jpg", "groundTruthText": "你好世界", "expectedBehavior": "ocr" },
+    { "filename": "printed-traditional-01.jpg", "tier": "printed-traditional", "imagePath": "printed-traditional-01.jpg", "groundTruthText": "你好世界", "expectedBehavior": "ocr" },
+    { "filename": "mixed-latin-01.jpg", "tier": "mixed-latin", "imagePath": "mixed-latin-01.jpg", "groundTruthText": "Hello 世界 123", "expectedBehavior": "ocr" },
+    { "filename": "vertical-traditional-01.jpg", "tier": "vertical-traditional", "imagePath": "vertical-traditional-01.jpg", "groundTruthText": "直書文字", "expectedBehavior": "ocr" },
+    { "filename": "handwriting-01.jpg", "tier": "handwriting", "imagePath": "handwriting-01.jpg", "groundTruthText": "手寫", "expectedBehavior": "ocr" },
+    { "filename": "blank-01.jpg", "tier": "blank", "imagePath": "blank-01.jpg", "groundTruthText": "", "expectedBehavior": "no-text" },
+    { "filename": "non-chinese-01.jpg", "tier": "non-chinese", "imagePath": "non-chinese-01.jpg", "groundTruthText": "English only", "expectedBehavior": "ocr" },
+    { "filename": "large-20mb-01.jpg", "tier": "large-20mb", "imagePath": "large-20mb-01.jpg", "groundTruthText": "大文件測試", "expectedBehavior": "ocr", "maxDimension": 4000 },
+    { "filename": "corrupted-01.jpg", "tier": "corrupted", "imagePath": "corrupted-01.jpg", "groundTruthText": "", "expectedBehavior": "error" }
+  ]
+}
