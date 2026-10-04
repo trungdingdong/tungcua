@@ -1,9 +1,27 @@
 {
   "name": "tungcua",
   "version": "1.0.0",
-  "main": "index.ts",
+  "main": "expo-router/entry",
+  "private": true,
+  "scripts": {
+    "start": "expo start",
+    "android": "expo start --android",
+    "ios": "expo start --ios",
+    "test": "jest",
+    "test:accuracy": "jest --testPathPatterns=accuracy",
+    "test:e2e:android": "maestro test e2e/maestro",
+    "test:e2e:ios": "maestro test e2e/maestro",
+    "lint": "eslint .",
+    "typecheck": "tsc --noEmit",
+    "build:dictionary": "tsx scripts/build-dictionary.ts",
+    "db:generate": "drizzle-kit generate",
+    "db:migrate": "drizzle-kit migrate",
+    "db:studio": "drizzle-kit studio"
+  },
+  "jest": {
+    "preset": "jest-expo"
+  },
   "dependencies": {
-    "drizzle-orm": "^0.30.0",
     "expo": "~57.0.26",
     "expo-camera": "~57.0.6",
     "expo-dev-client": "~57.0.19",
@@ -18,11 +36,12 @@
     "nativewind": "^4.1.0",
     "opencc-js": "^1.0.0",
     "react": "19.2.3",
+    "react-dom": "19.2.3",
     "react-native": "0.86.3",
     "react-native-gesture-handler": "~2.32.0",
     "react-native-reanimated": "4.5.1",
     "tailwindcss": "^3.4.0",
-    "zustand": "^4.5.0"
+    "zustand": "^5.0.0"
   },
   "devDependencies": {
     "@testing-library/react-native": "^14.0.1",
@@ -31,30 +50,10 @@
     "eslint": "^10.12.0",
     "jest": "^30.5.2",
     "jest-expo": "^57.0.1",
-    "maestro": "^2.1.1",
     "prettier": "^3.9.9",
     "typescript": "~6.0.3"
   },
-  "scripts": {
-    "start": "expo start",
-    "android": "expo start --android",
-    "ios": "expo start --ios",
-    "web": "expo start --web",
-    "test": "jest",
-    "test:e2e:android": "maestro test e2e/maestro --device android",
-    "test:e2e:ios": "maestro test e2e/maestro --device ios",
-    "test:accuracy": "jest --testPathPattern=accuracy",
-    "lint": "eslint . --ext .ts,.tsx",
-    "typecheck": "tsc --noEmit",
-    "build:dictionary": "ts-node scripts/build-dictionary.ts",
-    "db:generate": "drizzle-kit generate",
-    "db:migrate": "drizzle-kit migrate",
-    "db:studio": "drizzle-kit studio"
-  },
-  "private": true,
-  "allowScripts": [
-    "tailwindcss",
-    "nativewind",
-    "drizzle-orm"
-  ]
+  "overrides": {
+    "react-dom": "19.2.3"
+  }
 }
