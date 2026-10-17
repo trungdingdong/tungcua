@@ -37,21 +37,21 @@
 
 ### Unit Tests (Written FIRST — Red-Green-Refactor per Principle V)
 
-- [ ] T016 [P] Write Jest tests for Spike A corpus loader (loads manifest, validates entries, resolves image paths) in `spikes/spike-a/src/harness/__tests__/corpus-loader.test.ts`
-- [ ] T017 [P] Write Jest tests for Spike B corpus loader (loads manifest, validates PDF entries, resolves paths) in `spikes/spike-b/src/harness/__tests__/corpus-loader.test.ts`
-- [ ] T018 [P] Write Jest tests for measurement recorder (writes JSON results, computes aggregates: median warm time, printed accuracy) in `spikes/spike-a/src/harness/__tests__/measurements.test.ts`
-- [ ] T019 [P] Write Jest tests for result schema validation (validates `SpikeAResult`, `SpikeBResult` against data-model) in `spikes/spike-a/src/harness/__tests__/schema.test.ts`
+- [x] T016 [P] Write Jest tests for Spike A corpus loader (loads manifest, validates entries, resolves image paths) in `spikes/spike-a/src/harness/__tests__/corpus-loader.test.ts`
+- [x] T017 [P] Write Jest tests for Spike B corpus loader (loads manifest, validates PDF entries, resolves paths) in `spikes/spike-b/src/harness/__tests__/corpus-loader.test.ts`
+- [x] T018 [P] Write Jest tests for measurement recorder (writes JSON results, computes aggregates: median warm time, printed accuracy) in `spikes/spike-a/src/harness/__tests__/measurements.test.ts`
+- [x] T019 [P] Write Jest tests for result schema validation (validates `SpikeAResult`, `SpikeBResult` against data-model) in `spikes/spike-a/src/harness/__tests__/schema.test.ts`
 
 ### Implementation (After Tests Fail → Implement → Green)
 
-- [ ] T020 Implement shared TypeScript types (`SpikeACorpusEntry`, `SpikeAResult`, `SpikeBCorpusEntry`, `SpikeBResult`, `SpikeASummary`, `SpikeBSummary`, `EndToEndResult`) in `spikes/shared/types.ts` (**copy to both spikes**, no symlinks for Windows compatibility)
-- [ ] T021 Implement corpus loader (`loadManifest()`, `resolveImagePath()`, `validateEntry()`) in `spikes/spike-a/src/harness/corpus-loader.ts` and `spikes/spike-b/src/harness/corpus-loader.ts`
-- [ ] T022 Implement measurement recorder (`recordResult()`, `computeAggregate()`, `writeJSON()`) with **cold-start timing tracking** in `spikes/spike-a/src/harness/measurements.ts` and `spikes/spike-b/src/harness/measurements.ts`
-- [ ] T023 Implement result schema validators (Zod or manual) for `SpikeAResult`, `SpikeBResult`, `EndToEndResult` in `spikes/shared/validators.ts`
-- [ ] T022 Create Spike A harness entry point (`run-spike-a.ts`): loads corpus, iterates candidates, runs measurements, writes `src/results/spike-a-{platform}.json` in `spikes/spike-a/src/harness/run-spike-a.ts`
-- [ ] T023 Create Spike B harness entry point (`run-spike-b.ts`): loads corpus, iterates candidates, runs measurements, writes `src/results/spike-b-{platform}.json` in `spikes/spike-b/src/harness/run-spike-b.ts`
-- [ ] T024 Create End-to-End runner (`run-e2e.ts`): composes Spike B render → Spike A OCR, writes `src/results/end-to-end-{platform}.json` in `spikes/spike-a/src/harness/run-e2e.ts` (or shared)
-- [ ] T025 Verify T016–T019 red (no impl yet), then implement T020–T024 to green (`pnpm test` passes in both spikes)
+- [x] T020 Implement shared TypeScript types (`SpikeACorpusEntry`, `SpikeAResult`, `SpikeBCorpusEntry`, `SpikeBResult`, `SpikeASummary`, `SpikeBSummary`, `EndToEndResult`) in `spikes/shared/types.ts` (**copy to both spikes**, no symlinks for Windows compatibility)
+- [x] T021 Implement corpus loader (`loadManifest()`, `resolveImagePath()`, `validateEntry()`) in `spikes/spike-a/src/harness/corpus-loader.ts` and `spikes/spike-b/src/harness/corpus-loader.ts`
+- [x] T022 Implement measurement recorder (`recordResult()`, `computeAggregate()`, `writeJSON()`) with **cold-start timing tracking** in `spikes/spike-a/src/harness/measurements.ts` and `spikes/spike-b/src/harness/measurements.ts`
+- [x] T023 Implement result schema validators (Zod or manual) for `SpikeAResult`, `SpikeBResult`, `EndToEndResult` in `spikes/shared/validators.ts`
+- [x] T022 Create Spike A harness entry point (`run-spike-a.ts`): loads corpus, iterates candidates, runs measurements, writes `src/results/spike-a-{platform}.json` in `spikes/spike-a/src/harness/run-spike-a.ts`
+- [x] T023 Create Spike B harness entry point (`run-spike-b.ts`): loads corpus, iterates candidates, runs measurements, writes `src/results/spike-b-{platform}.json` in `spikes/spike-b/src/harness/run-spike-b.ts`
+- [x] T024 Create End-to-End runner (`run-e2e.ts`): composes Spike B render → Spike A OCR, writes `src/results/end-to-end-{platform}.json` in `spikes/spike-a/src/harness/run-e2e.ts` (or shared)
+- [x] T025 Verify T016–T019 red (no impl yet), then implement T020–T024 to green (`pnpm test` passes in both spikes)
 
 **Checkpoint**: Foundation ready — `pnpm test` passes in both spikes; harnesses load corpus, run measurements, write JSON. Spike execution can begin.
 
