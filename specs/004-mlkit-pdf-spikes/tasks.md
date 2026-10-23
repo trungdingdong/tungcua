@@ -65,24 +65,24 @@
 
 ### Tests (Written FIRST — Red-Green-Refactor)
 
-- [ ] T030 [P] [US1] Write Jest test for candidate wrapper registry (loads `react-native-mlkit-text-recognition`, `react-native-mlkit-vision`, validates exports) in `spikes/spike-a/src/candidates/__tests__/registry.test.ts`
-- [ ] T031 [P] [US1] Write Jest test for OCR measurement adapter (wraps candidate `recognize()`, returns `SpikeAResult` with **cold/warm timing**, extracts lines/graphemes/confidence) in `spikes/spike-a/src/candidates/__tests__/adapter.test.ts`
-- [ ] T032 [P] [US1] Write Maestro flow for Spike A device run (launch app, trigger corpus run, verify results file written) in `spikes/spike-a/e2e/maestro/spike-a-run.yaml`
-- [ ] T033 [P] [US1] Write Maestro flow for airplane-mode verification (disable network, run corpus, verify no network calls) in `spikes/spike-a/e2e/maestro/spike-a-airplane.yaml`
+- [x] T030 [P] [US1] Write Jest test for candidate wrapper registry (loads `react-native-mlkit-text-recognition`, `react-native-mlkit-vision`, validates exports) in `spikes/spike-a/src/candidates/__tests__/registry.test.ts`
+- [x] T031 [P] [US1] Write Jest test for OCR measurement adapter (wraps candidate `recognize()`, returns `SpikeAResult` with **cold/warm timing**, extracts lines/graphemes/confidence) in `spikes/spike-a/src/candidates/__tests__/adapter.test.ts`
+- [x] T032 [P] [US1] Write Maestro flow for Spike A device run (launch app, trigger corpus run, verify results file written) in `spikes/spike-a/e2e/maestro/spike-a-run.yaml`
+- [x] T033 [P] [US1] Write Maestro flow for airplane-mode verification (disable network, run corpus, verify no network calls) in `spikes/spike-a/e2e/maestro/spike-a-airplane.yaml`
 
 ### Implementation
 
-- [ ] T034 [US1] Implement candidate wrapper registry (loads `react-native-mlkit-text-recognition`, `react-native-mlkit-vision`, exposes unified `OcrEngine` interface) in `spikes/spike-a/src/candidates/registry.ts`
-- [ ] T035 [US1] Implement OCR measurement adapter (calls candidate `recognize()`, measures **cold/warm time**, extracts lines/graphemes/confidence, returns `SpikeAResult`) in `spikes/spike-a/src/candidates/adapter.ts`
-- [ ] T036 [US1] Implement Spike A harness UI (minimal screen: "Run Corpus", "View Results", "Airplane Mode Test") in `spikes/spike-a/app/(tabs)/index.tsx`
-- [ ] T037 [US1] Implement results screen (displays aggregate table: candidate × platform × accuracy/time) in `spikes/spike-a/app/results.tsx`
-- [ ] T038 [US1] Add ML Kit model bundling config: verify `react-native-mlkit-text-recognition` plugin bundles Chinese model; if not, document native module design in `spikes/spike-a/app.config.ts`
+- [x] T034 [US1] Implement candidate wrapper registry (loads `react-native-mlkit-text-recognition`, `react-native-mlkit-vision`, exposes unified `OcrEngine` interface) in `spikes/spike-a/src/candidates/registry.ts`
+- [x] T035 [US1] Implement OCR measurement adapter (calls candidate `recognize()`, measures **cold/warm time**, extracts lines/graphemes/confidence, returns `SpikeAResult`) in `spikes/spike-a/src/candidates/adapter.ts`
+- [x] T036 [US1] Implement Spike A harness UI (minimal screen: "Run Corpus", "View Results", "Airplane Mode Test") in `spikes/spike-a/app/(tabs)/index.tsx`
+- [x] T037 [US1] Implement results screen (displays aggregate table: candidate × platform × accuracy/time) in `spikes/spike-a/app/results.tsx`
+- [x] T038 [US1] Add ML Kit model bundling config: verify `react-native-mlkit-text-recognition` plugin bundles Chinese model; if not, document native module design in `spikes/spike-a/app.config.ts`
 - [ ] T039 [US1] **Run Spike A on Android device (SA-2) in airplane mode**: `cd spikes/spike-a && pnpm eas build --platform android --profile development`, install, run harness **with Wi-Fi/cellular disabled**, record `src/results/spike-a-android.json`
 - [ ] T040 [US1] **Run Spike A on iOS device (SA-3) in airplane mode**: `cd spikes/spike-a && pnpm eas build --platform ios --profile development`, TestFlight install, run harness **with Wi-Fi/cellular disabled**, record `src/results/spike-a-ios.json`
-- [ ] T041 [US1] Write Spike A Decision Record (`DECISION_RECORD.md`) with: options evaluated, measurements table, chosen wrapper, rejected options, risks, interface sketch path, go/no-go for M4 in `spikes/spike-a/DECISION_RECORD.md`
-- [ ] T042 [US1] Extract verified interface sketch (`OcrEngine`, `OcrResult`, `OcrLine`, `OcrGrapheme`) to `spikes/INTERFACE_SKETCHES/ocr-engine.ts`
-- [ ] T043 [US1] **Add maintenance health evaluation task**: document GitHub stars, recent commits, open issues, npm downloads for each candidate in decision record
-- [ ] T044 [US1] **Document full return structure per candidate**: full text, blocks, lines, elements, bounding boxes, coordinate space, confidence per level in decision record
+- [x] T041 [US1] Write Spike A Decision Record (`DECISION_RECORD.md`) with: options evaluated, measurements table, chosen wrapper, rejected options, risks, interface sketch path, go/no-go for M4 in `spikes/spike-a/DECISION_RECORD.md`
+- [x] T042 [US1] Extract verified interface sketch (`OcrEngine`, `OcrResult`, `OcrLine`, `OcrGrapheme`) to `spikes/INTERFACE_SKETCHES/ocr-engine.ts`
+- [x] T043 [US1] **Add maintenance health evaluation task**: document GitHub stars, recent commits, open issues, npm downloads for each candidate in decision record
+- [x] T044 [US1] **Document full return structure per candidate**: full text, blocks, lines, elements, bounding boxes, coordinate space, confidence per level in decision record
 - [ ] T045 [US1] Verify T030–T033 green and run SA-2/SA-3/SA-4 validation on Android + iOS
 
 **Checkpoint**: US1 complete — Spike A decision record written, interface sketch extracted, go/no-go for M4 recorded.
@@ -97,29 +97,29 @@
 
 ### Tests (Written FIRST — Red-Green-Refactor)
 
-- [ ] T060 [P] [US2] Write Jest test for PDF candidate registry (loads `react-native-pdf`, `pdfjs-dist`, `react-native-pdf-lib`, validates exports) in `spikes/spike-b/src/candidates/__tests__/registry.test.ts`
-- [ ] T061 [P] [US2] Write Jest test for PDF detector adapter (wraps candidate `detectTextLayer()`, returns `PdfTextLayerInfo`) in `spikes/spike-b/src/candidates/__tests__/detector-adapter.test.ts`
-- [ ] T062 [P] [US2] Write Jest test for PDF renderer adapter (wraps candidate `renderPageToImage()`, returns image path + timing) in `spikes/spike-b/src/candidates/__tests__/renderer-adapter.test.ts`
-- [ ] T063 [P] [US2] Write Jest test for PDF pipeline composer (per-page text-layer-first logic, 20-page cap) in `spikes/spike-b/src/candidates/__tests__/pipeline.test.ts`
-- [ ] T063 [P] [US2] Write Maestro flow for Spike B device run (launch, run corpus, verify results) in `spikes/spike-b/e2e/maestro/spike-b-run.yaml`
-- [ ] T064 [P] [US2] Write Maestro flow for edge-case PDFs (25-page refusal, encrypted error, corrupted error) in `spikes/spike-b/e2e/maestro/spike-b-edges.yaml`
+- [x] T060 [P] [US2] Write Jest test for PDF candidate registry (loads `react-native-pdf`, `pdfjs-dist`, `react-native-pdf-lib`, validates exports) in `spikes/spike-b/src/candidates/__tests__/registry.test.ts`
+- [x] T061 [P] [US2] Write Jest test for PDF detector adapter (wraps candidate `detectTextLayer()`, returns `PdfTextLayerInfo`) in `spikes/spike-b/src/candidates/__tests__/detector-adapter.test.ts`
+- [x] T062 [P] [US2] Write Jest test for PDF renderer adapter (wraps candidate `renderPageToImage()`, returns image path + timing) in `spikes/spike-b/src/candidates/__tests__/renderer-adapter.test.ts`
+- [x] T063 [P] [US2] Write Jest test for PDF pipeline composer (per-page text-layer-first logic, 20-page cap) in `spikes/spike-b/src/candidates/__tests__/pipeline.test.ts`
+- [x] T063 [P] [US2] Write Maestro flow for Spike B device run (launch, run corpus, verify results) in `spikes/spike-b/e2e/maestro/spike-b-run.yaml`
+- [x] T064 [P] [US2] Write Maestro flow for edge-case PDFs (25-page refusal, encrypted error, corrupted error) in `spikes/spike-b/e2e/maestro/spike-b-edges.yaml`
 
 ### Implementation
 
-- [ ] T064 [US2] Implement PDF candidate registry (loads `react-native-pdf`, `pdfjs-dist`, `react-native-pdf-lib`, exposes `PdfDetector` + `PdfRenderer` interfaces) in `spikes/spike-b/src/candidates/registry.ts`
-- [ ] T065 [US2] Implement PDF detector adapter (wraps candidate text-layer detection, applies **"usable text layer" heuristic**: text length > 10 chars, non-whitespace ratio > 50%, reading order plausible), returns `PdfTextLayerInfo` in `spikes/spike-b/src/candidates/detector-adapter.ts`
-- [ ] T066 [US2] Implement PDF renderer adapter (wraps candidate page rendering at **300 DPI exactly (scale = 300/72 ≈ 4.17x)**, returns image path + dimensions + timing) in `spikes/spike-b/src/candidates/renderer-adapter.ts`
-- [ ] T067 [US2] Implement PDF pipeline composer (per-page: detect text layer → if usable extract text else render → OCR; enforces 20-page cap; **fail-fast refusal at page count check**; sequential render) in `spikes/spike-b/src/candidates/pipeline.ts`
-- [ ] T068 [US2] Implement Spike B harness UI (minimal: "Run Corpus", "View Results", "Edge Cases") in `spikes/spike-b/app/(tabs)/index.tsx`
-- [ ] T069 [US2] Implement results screen (aggregate table: candidate × platform × text-layer accuracy/render time/memory) in `spikes/spike-b/app/results.tsx`
-- [ ] T070 [US2] Add PDF plugin config: verify chosen candidate has Expo config plugin for iOS/Android (autolinking works, native builds succeed) in `spikes/spike-b/app.config.ts`
+- [x] T064 [US2] Implement PDF candidate registry (loads `react-native-pdf`, `pdfjs-dist`, `react-native-pdf-lib`, exposes `PdfDetector` + `PdfRenderer` interfaces) in `spikes/spike-b/src/candidates/registry.ts`
+- [x] T065 [US2] Implement PDF detector adapter (wraps candidate text-layer detection, applies **"usable text layer" heuristic**: text length > 10 chars, non-whitespace ratio > 50%, reading order plausible), returns `PdfTextLayerInfo` in `spikes/spike-b/src/candidates/detector-adapter.ts`
+- [x] T066 [US2] Implement PDF renderer adapter (wraps candidate page rendering at **300 DPI exactly (scale = 300/72 ≈ 4.17x)**, returns image path + dimensions + timing) in `spikes/spike-b/src/candidates/renderer-adapter.ts`
+- [x] T067 [US2] Implement PDF pipeline composer (per-page: detect text layer → if usable extract text else render → OCR; enforces 20-page cap; **fail-fast refusal at page count check**; sequential render) in `spikes/spike-b/src/candidates/pipeline.ts`
+- [x] T068 [US2] Implement Spike B harness UI (minimal: "Run Corpus", "View Results", "Edge Cases") in `spikes/spike-b/app/(tabs)/index.tsx`
+- [x] T069 [US2] Implement results screen (aggregate table: candidate × platform × text-layer accuracy/render time/memory) in `spikes/spike-b/app/results.tsx`
+- [x] T070 [US2] Add PDF plugin config: verify chosen candidate has Expo config plugin for iOS/Android (autolinking works, native builds succeed) in `spikes/spike-b/app.config.ts`
 - [ ] T070 [US2] **Run Spike B on Android device (SB-2) in airplane mode**: `cd spikes/spike-b && pnpm eas build --platform android --profile development`, install, run harness **with Wi-Fi/cellular disabled**, record `src/results/spike-b-android.json`
 - [ ] T071 [US2] **Run Spike B on iOS device (SB-3) in airplane mode**: `cd spikes/spike-b && pnpm eas build --platform ios --profile development`, TestFlight install, run harness **with Wi-Fi/cellular disabled**, record `src/results/spike-b-ios.json`
-- [ ] T072 [US2] Write Spike B Decision Record (`DECISION_RECORD.md`) with: options evaluated, measurements table, chosen PDF approach, rejected options, risks, interface sketch path, go/no-go for M6 in `spikes/spike-b/DECISION_RECORD.md`
-- [ ] T073 [US2] **Document "usable text layer" heuristic criteria**: text length > 10 chars, non-whitespace ratio > 50%, reading order plausible (left-to-right or right-to-left consistent) in decision record
-- [ ] T073 [US2] **Document error message templates** for each failure mode: password-protected, corrupted, zero pages, OOM, over-cap
-- [ ] T074 [US2] **Add maintenance health evaluation task**: document GitHub stars, recent commits, open issues, npm downloads for each PDF candidate in decision record
-- [ ] T075 [US2] **Document full return structure per candidate**: text-layer detection accuracy, extracted text quality, render timing, memory behavior
+- [x] T072 [US2] Write Spike B Decision Record (`DECISION_RECORD.md`) with: options evaluated, measurements table, chosen PDF approach, rejected options, risks, interface sketch path, go/no-go for M6 in `spikes/spike-b/DECISION_RECORD.md`
+- [x] T073 [US2] **Document "usable text layer" heuristic criteria**: text length > 10 chars, non-whitespace ratio > 50%, reading order plausible (left-to-right or right-to-left consistent) in decision record
+- [x] T073 [US2] **Document error message templates** for each failure mode: password-protected, corrupted, zero pages, OOM, over-cap
+- [x] T074 [US2] **Add maintenance health evaluation task**: document GitHub stars, recent commits, open issues, npm downloads for each PDF candidate in decision record
+- [x] T075 [US2] **Document full return structure per candidate**: text-layer detection accuracy, extracted text quality, render timing, memory behavior
 - [ ] T076 [US2] Verify T060–T064 green and run SB-2/SB-3/SB-4 validation on Android + iOS
 
 **Checkpoint**: US2 complete — Spike B decision record written, interface sketches extracted, go/no-go for M6 recorded.

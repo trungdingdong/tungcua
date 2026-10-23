@@ -9,7 +9,6 @@ export default ({ config }: ConfigContext): ExpoConfig => ({
   icon: './assets/icon.png',
   userInterfaceStyle: 'light',
   scheme: 'tungcua',
-  newArchEnabled: true,
   ios: {
     supportsTablet: true,
     bundleIdentifier: 'com.tungcua.app',

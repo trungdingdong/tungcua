@@ -20,3 +20,5 @@ declare module 'react-native' {
     className?: string;
   }
 }
+
+export {};

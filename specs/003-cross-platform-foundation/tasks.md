@@ -64,9 +64,9 @@
 - [ ] T026 Implement typed query layer (`DocumentStore`: create, get, update, delete, cascade; `PageFileStore`: write/read/delete page images + thumbnails) in `src/shared/storage/queries.ts`
 - [ ] T027 Implement Drizzle migrations setup in `src/shared/storage/migrations.ts` and `drizzle.config.ts`
 - [ ] T028 Implement Trad/Simp display conversion (OpenCC JS, pure function, never mutates stored text) in `src/shared/conversion/opencc.ts`
-- [ ] T029 Implement theme tokens re-export from `tailwind.config.js` in `src/shared/theme/tokens.ts`
-- [ ] T029b Implement shared test utilities (mock OcrEngine, fixtures) in `src/shared/test-utils/`
-- [ ] T030 Configure root layout `app/_layout.tsx`: providers (Theme, Zustand, Drizzle), global styles, NativeWind class strategy for dark mode
+- [x] T029 Implement theme tokens re-export from `tailwind.config.js` in `src/shared/theme/tokens.ts`
+- [x] T029b Implement shared test utilities (mock OcrEngine, fixtures) in `src/shared/test-utils/`
+- [x] T030 Configure root layout `app/_layout.tsx`: providers (Theme, Zustand, Drizzle), global styles, NativeWind class strategy for dark mode
 - [ ] T031 Verify T014–T018 red (no impl yet), then implement T019–T029b to green (`pnpm test` passes all shared unit tests)
 
 **Checkpoint**: Foundation ready — `pnpm test` passes all shared logic tests; user story implementation can now begin.
@@ -91,10 +91,10 @@
 
 ### Implementation
 
-- [ ] T036 [US1] Implement Home screen `app/(tabs)/index.tsx`: Recents list (from `DocumentStore.getRecents`), Scan/Photos/Files/Attribution actions, NativeWind styling
+- [x] T036 [US1] Implement Home screen `app/(tabs)/index.tsx`: Recents list (from `DocumentStore.getRecents`), Scan/Photos/Files/Attribution actions, NativeWind styling
 - [ ] T037 [US1] Implement Scan screen `app/scan.tsx`: `expo-camera` + `expo-document-picker` for camera capture, review (retake/crop/page list), confirm adds pages via `DocumentStore.addPages`
-- [ ] T038 [US1] Implement OCR Progress screen `app/ocr/[docId].tsx`: per-page status (pending|recognizing|recognized|noText|failed) with thumbnails, calls `OcrEngine.recognize()` per page, updates via `DocumentStore.updatePageOcr`
-- [ ] T039 [US1] Implement Reader screen `app/reader/[docId].tsx`: displays recognized text (plain, non-tappable in P0), uses `DocumentStore.getDocWithPages`
+- [x] T038 [US1] Implement OCR Progress screen `app/ocr/[docId].tsx`: per-page status (pending|recognizing|recognized|noText|failed) with thumbnails, calls `OcrEngine.recognize()` per page, updates via `DocumentStore.updatePageOcr`
+- [x] T039 [US1] Implement Reader screen `app/reader/[docId].tsx`: displays recognized text (plain, non-tappable in P0), uses `DocumentStore.getDocWithPages`
 - [ ] T040 [US1] Verify T032–T035 green and run QS-2 validation on Android + iOS
 
 **Checkpoint**: US1 fully functional on both platforms — scan → review → OCR → Reader works.
